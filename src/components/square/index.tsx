@@ -4,7 +4,7 @@ import styles from "./styles.module.scss"
 export type SquareValue = "X" | "O" | undefined
 
 interface SquareProps {
-   onClick: (e: any) => {}
+   onClick: (e: any) => void
    value: SquareValue
 }
 

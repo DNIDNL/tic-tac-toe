@@ -1,9 +1,8 @@
 import React from "react"
 import { calculateWinner, useGame } from "hooks/useGame"
 import { Board } from "components/board"
-import "./App.css"
+import "./app.css"
 import styles from "./app.module.scss"
-import style from "react-syntax-highlighter/dist/styles/hljs/agate"
 
 const App = (props: any) => {
    const { game, click, jump } = useGame()

@@ -8,6 +8,11 @@ export default {
 
 const squares: Array<SquareValue> = ["X", "O", "O", "O", "O", "O", "O", "X", "X"];
 
+function onClick(column: number)
+{
+   alert('Square: ' + column + ' has value: ' + squares[column]);
+}
+
 export const TheBoard = () => {
-   return <Board squares={squares} onClick={e => alert('Square: ' + e + ' has value: ' + squares[e])} />
+   return <Board squares={squares} onClick={onClick} />
 }

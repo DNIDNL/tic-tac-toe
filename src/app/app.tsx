@@ -3,28 +3,26 @@ import { calculateWinner, useGame } from "hooks/useGame"
 import { Board } from "components/board"
 import "./app.css"
 import styles from "./app.module.scss"
+import { RouteComponentProps } from "react-router"
+import { Link } from "react-router-dom"
 
-const App = (props: any) => {
-    const { game, click, jump } = useGame()
-
-    const current = game.history[game.stepNumber]
+const App = (props: RouteComponentProps<{ step?: string }>) => {
+    const { current, history, click, xIsNext } = useGame(Number(props.match.params.step || ""))
 
     const winner = calculateWinner(current.squares)
 
-    const moves = game.history.map((step, move) => {
+    const moves = history.map((step, move) => {
         const desc = move ? "Go to move #" + move : "Go to game start"
         return (
             <li key={move}>
-                <button className={styles.history} onClick={() => jump(move)}>
+                <Link className={styles.history} to={`/${move}`}>
                     {desc}
-                </button>
+                </Link>
             </li>
         )
     })
 
-    const status = winner
-        ? "Winner: " + winner
-        : `Next player: ${game.xIsNext ? "X" : "O"}`
+    const status = winner ? `Winner: ${winner}` : `Next player: ${xIsNext ? "X" : "O"}`
 
     return (
         <div className={styles.game}>
@@ -33,7 +31,7 @@ const App = (props: any) => {
             </div>
             <div className={styles.gameInfo}>
                 <div>{status}</div>
-                <ol>{moves}</ol>
+                <ul>{moves}</ul>
             </div>
         </div>
     )

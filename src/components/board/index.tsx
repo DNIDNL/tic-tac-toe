@@ -7,7 +7,7 @@ interface BoardProps {
    squares: SquareValue[]
 }
 
-const rows: Number[][] = [...new Array(9)]
+const rows: number[][] = [...new Array(9)]
    .map((x, i) => i)
    .reduce((acc: number[][], i: number) => {
       if (i % 3 === 0) return [...acc, [i]]
@@ -17,10 +17,10 @@ const rows: Number[][] = [...new Array(9)]
 
 export const Board = ({ onClick, squares }: BoardProps) => (
    <div>
-      {rows.map((cols: any, i) => (
+      {rows.map((row: number[], i) => (
          <div className={styles.boardRow} key={i}>
-            {cols.map((col: any) => (
-               <Square value={squares[col]} onClick={() => onClick(col)} key={col} />
+            {row.map((squareNumber: number) => (
+               <Square value={squares[squareNumber]} onClick={() => onClick(squareNumber)} key={squareNumber} />
             ))}
          </div>
       ))}
